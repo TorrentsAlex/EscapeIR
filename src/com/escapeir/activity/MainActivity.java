@@ -1,6 +1,7 @@
 package com.escapeir.activity;
 
 import com.escapeir.application.EscapeIRApplication;
+import com.escapeir.logic.Logic;
 import com.example.escapeir.R;
 
 import android.os.Bundle;
@@ -40,48 +41,29 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
+		Intent cameraIntent = new Intent(this, CameraActivity.class);
+		
 		switch (v.getId()) {
+		
 		case R.id.btn_bedroom: 
-			chargeArray(EscapeIRApplication.MODE_BEDROOM);
-			Intent bedroomIntent = new Intent(this, CameraActivity.class);
-			bedroomIntent.putExtra("escapeMode", EscapeIRApplication.MODE_BEDROOM);
-			startActivity(bedroomIntent);
+			Logic.chargeArray(EscapeIRApplication.MODE_BEDROOM, this);
+			
+			cameraIntent.putExtra("escapeMode", EscapeIRApplication.MODE_BEDROOM);
+			startActivity(cameraIntent);
 			break;
 		case R.id.btn_kitchen: 
-			chargeArray(EscapeIRApplication.MODE_KITCHEN);
-			Intent kitchenIntent = new Intent(this, CameraActivity.class);
-			kitchenIntent.putExtra("escapeMode", EscapeIRApplication.MODE_KITCHEN);
-			startActivity(kitchenIntent);
+			Logic.chargeArray(EscapeIRApplication.MODE_KITCHEN, this);
+			
+			cameraIntent.putExtra("escapeMode", EscapeIRApplication.MODE_KITCHEN);
+			startActivity(cameraIntent);
 			break;
 		case R.id.btn_classroom: 
-			chargeArray(EscapeIRApplication.MODE_CLASSROOM);
-			Intent classroomIntent = new Intent(this, CameraActivity.class);
-			classroomIntent.putExtra("escapeMode", EscapeIRApplication.MODE_CLASSROOM);
-			startActivity(classroomIntent);
+			Logic.chargeArray(EscapeIRApplication.MODE_CLASSROOM, this);
+			
+			cameraIntent.putExtra("escapeMode", EscapeIRApplication.MODE_CLASSROOM);
+			startActivity(cameraIntent);
 			break;
 		}		
 	}
-	public void chargeArray(int room) {
-		switch(room) {
-		case EscapeIRApplication.MODE_BEDROOM:
-			EscapeIRApplication.REFERENCE_ROOM = this.getResources().getStringArray(R.array.reference_prueba);
-			for(byte i=0;i<EscapeIRApplication.REFERENCE_ROOM.length;i++) {
-				Log.i(EscapeIRApplication.TAG, EscapeIRApplication.REFERENCE_ROOM[i]+ i);
-			}
-			break;
-		case EscapeIRApplication.MODE_CLASSROOM:
-			EscapeIRApplication.REFERENCE_ROOM = this.getResources().getStringArray(R.array.reference_prueba);
-			for(byte i=0;i<EscapeIRApplication.REFERENCE_ROOM.length;i++) {
-				Log.i(EscapeIRApplication.TAG, EscapeIRApplication.REFERENCE_ROOM[i] + i);
-			}
-			break;
-		case EscapeIRApplication.MODE_KITCHEN:
-			EscapeIRApplication.REFERENCE_ROOM = this.getResources().getStringArray(R.array.reference_prueba);
-			for(byte i=0;i<EscapeIRApplication.REFERENCE_ROOM.length;i++) {
-				Log.i(EscapeIRApplication.TAG, EscapeIRApplication.REFERENCE_ROOM[i]+ i);
-			}
-			break;
-		}
-	}
-
+	
 }
