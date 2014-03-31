@@ -6,6 +6,7 @@ import com.example.escapeir.R;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -41,21 +42,46 @@ public class MainActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.btn_bedroom: 
+			chargeArray(EscapeIRApplication.MODE_BEDROOM);
 			Intent bedroomIntent = new Intent(this, CameraActivity.class);
 			bedroomIntent.putExtra("escapeMode", EscapeIRApplication.MODE_BEDROOM);
 			startActivity(bedroomIntent);
 			break;
 		case R.id.btn_kitchen: 
+			chargeArray(EscapeIRApplication.MODE_KITCHEN);
 			Intent kitchenIntent = new Intent(this, CameraActivity.class);
 			kitchenIntent.putExtra("escapeMode", EscapeIRApplication.MODE_KITCHEN);
 			startActivity(kitchenIntent);
 			break;
 		case R.id.btn_classroom: 
+			chargeArray(EscapeIRApplication.MODE_CLASSROOM);
 			Intent classroomIntent = new Intent(this, CameraActivity.class);
 			classroomIntent.putExtra("escapeMode", EscapeIRApplication.MODE_CLASSROOM);
 			startActivity(classroomIntent);
 			break;
 		}		
+	}
+	public void chargeArray(int room) {
+		switch(room) {
+		case EscapeIRApplication.MODE_BEDROOM:
+			EscapeIRApplication.REFERENCE_ROOM = this.getResources().getStringArray(R.array.reference_prueba);
+			for(byte i=0;i<EscapeIRApplication.REFERENCE_ROOM.length;i++) {
+				Log.i(EscapeIRApplication.TAG, EscapeIRApplication.REFERENCE_ROOM[i]+ i);
+			}
+			break;
+		case EscapeIRApplication.MODE_CLASSROOM:
+			EscapeIRApplication.REFERENCE_ROOM = this.getResources().getStringArray(R.array.reference_prueba);
+			for(byte i=0;i<EscapeIRApplication.REFERENCE_ROOM.length;i++) {
+				Log.i(EscapeIRApplication.TAG, EscapeIRApplication.REFERENCE_ROOM[i] + i);
+			}
+			break;
+		case EscapeIRApplication.MODE_KITCHEN:
+			EscapeIRApplication.REFERENCE_ROOM = this.getResources().getStringArray(R.array.reference_prueba);
+			for(byte i=0;i<EscapeIRApplication.REFERENCE_ROOM.length;i++) {
+				Log.i(EscapeIRApplication.TAG, EscapeIRApplication.REFERENCE_ROOM[i]+ i);
+			}
+			break;
+		}
 	}
 
 }

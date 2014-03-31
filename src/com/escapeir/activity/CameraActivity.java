@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.catchoom.CatchoomARItem;
 import com.catchoom.CatchoomActivity;
@@ -75,28 +76,32 @@ public class CameraActivity extends CatchoomActivity implements OnClickListener,
 	@Override
 	public void searchCompleted(ArrayList<CatchoomCloudRecognitionItem> results) {
         boolean haveContent = false;
-
+    	Log.i(EscapeIRApplication.TAG, "searchCompleted");
+    	Log.i(EscapeIRApplication.TAG, "name: "+results.get(0).getItemName());
+    	
         // Look for trackable results
         for (CatchoomCloudRecognitionItem item : results) {
         	Log.i(EscapeIRApplication.TAG, item.getItemName());
+
             // Setup the AR experience with content provided in the response
             if (item.isAR()) {
                 CatchoomARItem itemAR = (CatchoomARItem) item;
                 if (itemAR.getContents().size() > 0) {
                     catchoomTracking.addItem(itemAR);
-                    haveContent=true;
+                    catchoomTracking.startTracking();
                 }
+            }else {
+            	if(item.getItemName().equals(EscapeIRApplication.REFERENCE_ROOM[EscapeIRApplication.COUNT_REFERENCE])){
+            		EscapeIRApplication.COUNT_REFERENCE++;
+            		Toast.makeText(this,  item.getItemName() , Toast.LENGTH_SHORT).show();
+            	}else {
+            		Toast.makeText(this, "Incorrect", Toast.LENGTH_SHORT).show();
+            	}
             }
         }
-
         catchoomCamera.restartCameraPreview();
+    	Log.i(EscapeIRApplication.TAG, "restart Camera");
 
-        if (haveContent) {
-            // Start the AR experience
-            catchoomTracking.startTracking();
-        } else {
-            // Show a message that no matches were found for this query.
-        }
 	}
 
 	@Override
@@ -107,6 +112,8 @@ public class CameraActivity extends CatchoomActivity implements OnClickListener,
 
 	@Override
 	public void requestImageReceived(CatchoomImage image) {
+    	Log.i(EscapeIRApplication.TAG, "searchImage");
+
         cloudRecognition.searchWithImage(EscapeIRApplication.escapeToken, image);
 	}
 
