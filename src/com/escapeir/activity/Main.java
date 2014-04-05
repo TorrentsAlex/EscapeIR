@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class MainActivity extends Activity implements OnClickListener {
+public class Main extends Activity implements OnClickListener {
 	private Button bedroom;
 	private Button classroom;
 	private Button kitchen;
@@ -41,7 +41,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		Intent cameraIntent = new Intent(this, CameraActivity.class);
+		Intent cameraIntent = new Intent(this, Camera.class);
 		
 		switch (v.getId()) {
 		

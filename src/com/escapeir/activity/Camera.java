@@ -23,7 +23,7 @@ import com.catchoom.CatchoomTracking;
 import com.escapeir.application.EscapeIRApplication;
 import com.example.escapeir.R;
 
-public class CameraActivity extends CatchoomActivity implements OnClickListener, CatchoomResponseHandler, CatchoomImageHandler {
+public class Camera extends CatchoomActivity implements OnClickListener, CatchoomResponseHandler, CatchoomImageHandler {
 
 	private CatchoomCloudRecognition cloudRecognition;
 	private CatchoomTracking catchoomTracking;
