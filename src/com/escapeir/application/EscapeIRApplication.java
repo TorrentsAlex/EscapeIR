@@ -18,6 +18,13 @@ public class EscapeIRApplication extends Application {
 	public int preferencesMode;
 	public static String preferencesModeKey="EscapeIRPlayMode";
 	public static int preferencesModeDefault=3;
+	
+	public String preferencesUser;
+	public static String preferencesUserKey="EscapeIRUSer";
+	public static String preferencesUSerDefault=null;
+	
+	// Save user in preferences
+	
 	@Override
 	public void onCreate() {
 		super.onCreate();
