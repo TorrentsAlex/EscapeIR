@@ -1,6 +1,8 @@
 package com.escapeir.application;
 
 import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
 
 public class EscapeIRApplication extends Application {
 	
@@ -15,19 +17,25 @@ public class EscapeIRApplication extends Application {
 	public static int COUNT_REFERENCE=0;
 	public static String[] REFERENCE_ROOM;
 	
+	public static String preferencesEscape="EscapeIRPreferences";
+	
 	public int preferencesMode;
 	public static String preferencesModeKey="EscapeIRPlayMode";
 	public static int preferencesModeDefault=3;
 	
-	public String preferencesUser;
-	public static String preferencesUserKey="EscapeIRUSer";
-	public static String preferencesUSerDefault=null;
+	public static String preferencesUserKey="EscapeIRUser";
+	public static String preferencesUserDefault="escapeIR";
 	
-	// Save user in preferences
+	public static String preferencesEditorUser="Username";
+	public static SharedPreferences preferencesUser=null;
+
+	public static String USER_NAME=null;
 	
 	@Override
 	public void onCreate() {
 		super.onCreate();
-
+		
+		EscapeIRApplication.preferencesUser = getSharedPreferences(
+				EscapeIRApplication.preferencesEditorUser, Context.MODE_PRIVATE);
 	}
 }
