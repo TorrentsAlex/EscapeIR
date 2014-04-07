@@ -3,7 +3,7 @@
 
     <string name="app_name">EscapeIR</string>
     <string name="action_settings">Settings</string>
-    
+    <string name="setUser">You need a username!</string>
     <string-array name="reference_classroom">
 		<item>switch</item>
 		<item>keyboard</item>
