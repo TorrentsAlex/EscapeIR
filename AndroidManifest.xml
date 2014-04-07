@@ -21,7 +21,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.escapeir.activity.EnterUser"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,9 +31,16 @@
         </activity>
         <activity
             android:name="com.escapeir.activity.Main"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
         </activity>
-        <activity android:name="com.escapeir.activity.Camera" >
+        <activity
+            android:name="com.escapeir.activity.Camera"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.escapeir.activity.Results"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 
