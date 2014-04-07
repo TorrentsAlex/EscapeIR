@@ -77,7 +77,6 @@ public class Camera extends CatchoomActivity implements OnClickListener, Catchoo
 	public void searchCompleted(ArrayList<CatchoomCloudRecognitionItem> results) {
         boolean haveContent = false;
     	Log.i(EscapeIRApplication.TAG, "searchCompleted");
-    	Log.i(EscapeIRApplication.TAG, "name: "+results.get(0).getItemName());
     	
         // Look for trackable results
         for (CatchoomCloudRecognitionItem item : results) {
@@ -87,6 +86,7 @@ public class Camera extends CatchoomActivity implements OnClickListener, Catchoo
             if (item.isAR()) {
                 CatchoomARItem itemAR = (CatchoomARItem) item;
                 if (itemAR.getContents().size() > 0) {
+
                     catchoomTracking.addItem(itemAR);
                     catchoomTracking.startTracking();
                 }
