@@ -27,6 +27,7 @@ public class EnterUser extends Activity implements OnClickListener {
 		if(!Preferences.setUsername().equals(EscapeIRApplication.preferencesUserDefault)) {
 			Intent mainIntent = new Intent(this, Main.class);
 			startActivity(mainIntent);
+			finish();
 		}
 
 		//TODO: introducir el nickname y guardarlo en las preferences
