@@ -11,6 +11,7 @@
         android:layout_centerInParent="true" />
 
     <LinearLayout
+        android:id="@+id/layout_btn_help"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -26,6 +27,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/layout_btn_photo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -37,6 +39,45 @@
             android:layout_height="75dp"
             android:layout_margin="20dp"
             android:background="@drawable/feedback_photo_button" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_introducing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/layout_btn_photo"
+        android:layout_below="@id/layout_btn_help"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:alpha="0.9"
+        android:background="@android:color/darker_gray"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:layout_gravity="top"
+            android:text="te estas introduciendo en..."
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/text_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Una clase aparentemente normal, con ordenadores, mesas con cajones, sillas
+            pero no lo puedo ver con claridad, la luz esta apagada"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="@string/text_start" />
     </LinearLayout>
 
 </RelativeLayout>
