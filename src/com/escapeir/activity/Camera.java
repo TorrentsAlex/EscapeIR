@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.catchoom.CatchoomARItem;
@@ -33,6 +34,11 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 
 	private Button btnHelp;
 	private Button btnPhoto;
+	private Button btnIntro;
+	
+	private LinearLayout layoutHelp;
+	private LinearLayout layoutPhoto;
+	private LinearLayout layoutIntro;
 
 	@Override
 	public void onPostCreate() {
@@ -58,9 +64,18 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 
 		btnHelp = (Button) findViewById(R.id.btn_help);
 		btnPhoto = (Button) findViewById(R.id.btn_photo);
+		btnIntro = (Button) findViewById(R.id.btn_start);
+		layoutPhoto = (LinearLayout) findViewById(R.id.layout_btn_photo);
+		layoutHelp = (LinearLayout) findViewById(R.id.layout_btn_help);
+		layoutIntro = (LinearLayout) findViewById(R.id.layout_introducing);
+		
 		btnHelp.setOnClickListener(this);
 		btnPhoto.setOnClickListener(this);
-
+		btnIntro.setOnClickListener(this);
+		
+		layoutPhoto.setVisibility(View.GONE);
+		layoutHelp.setVisibility(View.GONE);
+		
 		// cargar los arrays
 	}
 
@@ -137,6 +152,12 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 			break;
 		case R.id.btn_photo:
 			catchoomCamera.takePicture();
+			break;
+		case R.id.btn_start:
+			layoutPhoto.setVisibility(View.VISIBLE);
+			layoutHelp.setVisibility(View.VISIBLE);
+			// Start time
+			
 			break;
 		}
 
