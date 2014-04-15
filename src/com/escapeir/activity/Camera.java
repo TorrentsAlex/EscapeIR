@@ -1,12 +1,15 @@
 package com.escapeir.activity;
 
+import java.text.ChoiceFormat;
 import java.util.ArrayList;
 
 import android.content.Intent;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -35,6 +38,8 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 	private Button btnHelp;
 	private Button btnPhoto;
 	private Button btnIntro;
+	
+	private Chronometer chronometer;
 	
 	private LinearLayout layoutHelp;
 	private LinearLayout layoutPhoto;
@@ -68,14 +73,16 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 		layoutPhoto = (LinearLayout) findViewById(R.id.layout_btn_photo);
 		layoutHelp = (LinearLayout) findViewById(R.id.layout_btn_help);
 		layoutIntro = (LinearLayout) findViewById(R.id.layout_introducing);
+		chronometer = (Chronometer) findViewById(R.id.chronometer);
 		
 		btnHelp.setOnClickListener(this);
 		btnPhoto.setOnClickListener(this);
 		btnIntro.setOnClickListener(this);
 		
-		layoutPhoto.setVisibility(View.GONE);
-		layoutHelp.setVisibility(View.GONE);
+		layoutPhoto.setVisibility(View.INVISIBLE);
+		layoutHelp.setVisibility(View.INVISIBLE);
 		
+		chronometer.setBase(SystemClock.elapsedRealtime());
 		// cargar los arrays
 	}
 
@@ -117,7 +124,10 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 				}
 				// finish the game, go to results
 				if(EscapeIRApplication.COUNT_REFERENCE == EscapeIRApplication.REFERENCE_ROOM.length) {
+					String time = (String) chronometer.getText();
+					chronometer.stop();
 					Intent intent = new Intent(this, Results.class);
+					intent.putExtra("time", time);
 					startActivity(intent);
 					finish();
 				}
@@ -154,10 +164,11 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 			catchoomCamera.takePicture();
 			break;
 		case R.id.btn_start:
+			// Start Game
 			layoutPhoto.setVisibility(View.VISIBLE);
 			layoutHelp.setVisibility(View.VISIBLE);
-			// Start time
-			
+			layoutIntro.setVisibility(View.INVISIBLE);
+			chronometer.start();
 			break;
 		}
 
