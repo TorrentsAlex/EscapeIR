@@ -1,8 +1,12 @@
 package com.escapeir.application;
 
+import java.util.ArrayList;
+
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+
+import com.escapeir.userclass.User;
 
 public class EscapeIRApplication extends Application {
 	
@@ -30,6 +34,8 @@ public class EscapeIRApplication extends Application {
 	public static SharedPreferences preferencesUser=null;
 
 	public static String USER_NAME=null;
+	
+	public static ArrayList<User> usersServer = new ArrayList();
 	
 	@Override
 	public void onCreate() {
