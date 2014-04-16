@@ -24,8 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:format="%s"
-            android:textSize="23sp"
-            />
+            android:textSize="23sp"/>
 
         <Button
             android:id="@+id/btn_help"
@@ -55,10 +54,10 @@
         android:id="@+id/layout_introducing"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/layout_btn_photo"
         android:layout_below="@id/layout_btn_help"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
         android:alpha="0.9"
         android:background="@android:color/darker_gray"
         android:orientation="vertical" >
@@ -67,7 +66,7 @@
             android:id="@+id/text_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="15dp"
             android:layout_marginTop="8dp"
             android:gravity="center"
             android:layout_gravity="top"
@@ -78,6 +77,9 @@
             android:id="@+id/text_body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="20dp"
             android:text="Una clase aparentemente normal, con ordenadores, mesas con cajones, sillas
             pero no lo puedo ver con claridad, la luz esta apagada"
             android:textStyle="bold" />
@@ -86,8 +88,24 @@
             android:id="@+id/btn_start"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
             android:layout_gravity="bottom"
             android:text="@string/text_start" />
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:id="@+id/layout_nothing_found"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_btn_help"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:alpha="0.9"
+        android:background="@android:color/darker_gray"
+        android:orientation="vertical">
+        
     </LinearLayout>
 
 </RelativeLayout>
