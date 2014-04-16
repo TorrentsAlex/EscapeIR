@@ -168,6 +168,8 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 			layoutPhoto.setVisibility(View.VISIBLE);
 			layoutHelp.setVisibility(View.VISIBLE);
 			layoutIntro.setVisibility(View.INVISIBLE);
+			
+			chronometer.setBase(SystemClock.elapsedRealtime());
 			chronometer.start();
 			break;
 		}
