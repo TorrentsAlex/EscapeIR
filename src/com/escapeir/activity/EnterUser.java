@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.escapeir.application.EscapeIRApplication;
-import com.escapeir.preferences.Preferences;
+import com.escapeir.util.Preferences;
 import com.example.escapeir.R;
 
 public class EnterUser extends Activity implements OnClickListener {
