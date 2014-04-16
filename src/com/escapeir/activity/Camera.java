@@ -1,13 +1,15 @@
 package com.escapeir.activity;
 
-import java.text.ChoiceFormat;
 import java.util.ArrayList;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.LinearLayout;
@@ -46,6 +48,14 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 	private LinearLayout layoutIntro;
 
 	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+		WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		super.onCreate(savedInstanceState);
+	}
+	
+	@Override
 	public void onPostCreate() {
 		View mainLayout = (View) getLayoutInflater().inflate(
 				R.layout.photo_layout, null);
@@ -82,7 +92,6 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 		layoutPhoto.setVisibility(View.INVISIBLE);
 		layoutHelp.setVisibility(View.INVISIBLE);
 		
-		chronometer.setBase(SystemClock.elapsedRealtime());
 		// cargar los arrays
 	}
 
@@ -103,9 +112,10 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 	public void searchCompleted(ArrayList<CatchoomCloudRecognitionItem> results) {
 		boolean haveContent = false;
 		Log.i(EscapeIRApplication.TAG, "searchCompleted");
-
+		
 		// Look for trackable results
 		for (CatchoomCloudRecognitionItem item : results) {
+			haveContent = true;
 			Log.i(EscapeIRApplication.TAG, item.getItemName());
 
 			if (item.getItemName()
@@ -118,7 +128,8 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 						catchoomTracking.addItem(itemAR);
 						catchoomTracking.startTracking();
 					}
-				} else { // Item Image Recognition
+					// Item Image Recognition
+				} else { 
 					Toast.makeText(this, item.getItemName(), Toast.LENGTH_SHORT)
 					.show();
 				}
@@ -135,6 +146,10 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 			} else {
 				Toast.makeText(this, "Incorrect", Toast.LENGTH_SHORT).show();
 			}
+		}
+		// Nothing found
+		if(!haveContent) {
+			
 		}
 		catchoomCamera.restartCameraPreview();
 		Log.i(EscapeIRApplication.TAG, "restart Camera");
@@ -174,6 +189,27 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 			break;
 		}
 
+	}
+
+	@Override
+	public void onPause() {
+		if(chronometer!=null) {
+			chronometer.stop();
+		}
+		Log.i("EscapeIR","onPause");
+		
+		super.onPause();
+	}
+
+	@Override
+	public void onResume() {
+		if(chronometer!=null) {
+			chronometer.start();
+			chronometer.setVisibility(View.VISIBLE);
+		}
+		Log.i("EscapeIR","onResume");
+		
+		super.onResume();
 	}
 
 }
