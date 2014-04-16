@@ -1,4 +1,4 @@
-package com.escapeir.preferences;
+package com.escapeir.util;
 
 import android.content.SharedPreferences.Editor;
 
