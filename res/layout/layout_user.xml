@@ -49,7 +49,7 @@
             android:background="@drawable/action_enter"
             android:textColor="@android:color/white"
             android:textStyle="bold"
-            android:text="Entrar" />
+            android:text="@string/enter" />
         
           </LinearLayout>
         
