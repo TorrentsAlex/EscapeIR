@@ -47,13 +47,6 @@ public class Main extends Activity implements OnClickListener {
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
-	@Override
 	public void onClick(View v) {
 		Intent cameraIntent = new Intent(this, Camera.class);
 
