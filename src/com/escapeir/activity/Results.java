@@ -26,6 +26,7 @@ public class Results extends Activity {
 		ListView viewList = (ListView) findViewById(R.id.listView1);
 		
 		userTime.setText(getIntent().getExtras().getString("time"));
+		
 		viewList.setAdapter(new ItemAdapter(this,
 				R.layout.result_list, EscapeIRApplication.usersServer));
 		
