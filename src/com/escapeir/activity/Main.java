@@ -27,12 +27,10 @@ public class Main extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		bedroom = (Button) findViewById(R.id.btn_bedroom);
 		classroom = (Button) findViewById(R.id.btn_classroom);
 		kitchen = (Button) findViewById(R.id.btn_kitchen);
 		editUser = (EditText) findViewById(R.id.edit_user);
 
-		bedroom.setOnClickListener(this);
 		classroom.setOnClickListener(this);
 		kitchen.setOnClickListener(this);
 
@@ -51,14 +49,6 @@ public class Main extends Activity implements OnClickListener {
 		Intent cameraIntent = new Intent(this, Camera.class);
 
 		switch (v.getId()) {
-
-		case R.id.btn_bedroom:
-			Logic.chargeArray(EscapeIRApplication.MODE_BEDROOM, this);
-
-			cameraIntent.putExtra("escapeMode",
-					EscapeIRApplication.MODE_BEDROOM);
-			startActivity(cameraIntent);
-			break;
 		case R.id.btn_kitchen:
 			Logic.chargeArray(EscapeIRApplication.MODE_KITCHEN, this);
 
