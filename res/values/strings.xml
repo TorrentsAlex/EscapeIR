@@ -4,7 +4,12 @@
     <string name="app_name">Escape IR</string>
     <string name="usuario">Usuario</string>
     <string name="user_invalid">Introduce un usuario válido</string>
-  
+ 	<string name="how_to_play">Cómo se juega</string>
+    <string name="kitchen">COCINA</string>
+    <string name="classroom">AULA</string>
+    <string name="enter">Entrar</string>
+    <string name="escape">Rscape</string>
+    <string name="ir">IR</string>
     
     <!-- Buttons -->
     <string name="text_start">Start</string>
