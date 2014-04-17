@@ -28,6 +28,8 @@ import com.catchoom.CatchoomResponseHandler;
 import com.catchoom.CatchoomSDK;
 import com.catchoom.CatchoomTracking;
 import com.escapeir.application.EscapeIRApplication;
+import com.escapeir.server.Connect;
+import com.escapeir.util.Preferences;
 import com.example.escapeir.R;
 
 public class Camera extends CatchoomActivity implements OnClickListener,
@@ -136,6 +138,9 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 				// finish the game, go to results
 				if(EscapeIRApplication.COUNT_REFERENCE == EscapeIRApplication.REFERENCE_ROOM.length) {
 					String time = (String) chronometer.getText();
+					Connect connect = new Connect();
+					Log.i(EscapeIRApplication.TAG, EscapeIRApplication.USER_NAME+ "-"+ time);
+					connect.setUser(EscapeIRApplication.USER_NAME, time);
 					chronometer.stop();
 					Intent intent = new Intent(this, Results.class);
 					intent.putExtra("time", time);
