@@ -16,13 +16,15 @@ import com.example.escapeir.R;
 
 public class Results extends Activity {
 	private TextView userTime;
-	private Connect connect = new Connect();
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.result_layout);
 		
-		userTime = (TextView) findViewById(R.id.timeUser);
+		
+		userTime = (TextView) findViewById(R.id.time_user);
+		
 		ListView viewList = (ListView) findViewById(R.id.listView1);
 		
 		userTime.setText(getIntent().getExtras().getString("time"));

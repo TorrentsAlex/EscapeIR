@@ -35,10 +35,9 @@ public class Main extends Activity implements OnClickListener {
 		kitchen.setOnClickListener(this);
 
 		TextView textUser = (TextView) findViewById(R.id.text_user);
-		
-		EscapeIRApplication.usersServer.clear();
 		Connect connect = new Connect();
-		connect.getUser();
+	
+		EscapeIRApplication.usersServer.clear();
 
 		if (null != EscapeIRApplication.USER_NAME)
 			textUser.setText(EscapeIRApplication.USER_NAME);

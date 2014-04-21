@@ -69,6 +69,7 @@
         </RelativeLayout>
 
         <LinearLayout
+            android:id="@+id/layout_btns"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -81,6 +82,7 @@
                 android:drawableLeft="@drawable/img_kitchen"
                 android:background="@drawable/action_kitchen"
                 android:textStyle="bold"
+                android:textColor="@android:color/white"
                 android:text="@string/kitchen" />
 
             <Button
@@ -91,29 +93,35 @@
                 android:drawableLeft="@drawable/img_classroom"
                 android:background="@drawable/action_classroom"
                 android:textStyle="bold"
+                android:textColor="@android:color/white"
                 android:text="@string/classroom" />
         </LinearLayout>
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
- 		
- 		<Button
-            android:id="@+id/btn_show_results"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/action_enter"
-            android:layout_alignParentLeft="true"
-            android:text="ver resultados"/>
         
-        <Button
-            android:id="@+id/btn_how_to_play"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/action_enter"
- 			android:layout_alignParentRight="true"
-            android:text="@string/how_to_play" />
+    </LinearLayout>
+    
+    <RelativeLayout
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentBottom="true">
+	 		
+	 		<Button
+	            android:id="@+id/btn_show_results"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:background="@drawable/action_results"
+	            android:layout_alignParentLeft="true"
+	            android:textColor="@android:color/white"
+	            android:text="@string/show_results"/>
+	        
+	        <Button
+	            android:id="@+id/btn_how_to_play"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:background="@drawable/action_results"
+	 			android:layout_alignParentRight="true"
+	            android:textColor="@android:color/white"
+	            android:text="@string/how_to_play" />
     </RelativeLayout>
+
+   
 </RelativeLayout>

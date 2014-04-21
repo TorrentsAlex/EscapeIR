@@ -10,30 +10,30 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="true" />
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/layout_btn_help"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:gravity="right"
         android:orientation="horizontal" >
         
         <Chronometer 
             android:id="@+id/chronometer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_centerInParent="true"
             android:format="%s"
-            android:textSize="23sp"/>
-
-        <Button
-            android:id="@+id/btn_help"
-            android:layout_width="wrap_content"
+            android:textColor="@color/orange"
+            android:textSize="25sp"/>
+        <TextView 
+            android:id="@+id/txt_guide"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@android:color/transparent"
-            android:text="Help" />
-    </LinearLayout>
+            android:layout_below="@id/chronometer"
+            android:gravity="center"
+            android:textColor="@color/orange"
+            android:layout_marginTop="25dp"/>
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/layout_btn_photo"
@@ -54,7 +54,7 @@
         android:id="@+id/layout_introducing"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/layout_btn_help"
+        android:layout_centerInParent="true"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
@@ -74,23 +74,20 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/text_body"
+            android:id="@+id/txt_body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="20dp"
-            android:text="Una clase aparentemente normal, con ordenadores, mesas con cajones, sillas
-            pero no lo puedo ver con claridad, la luz esta apagada"
             android:textStyle="bold" />
 
         <Button
             android:id="@+id/btn_start"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
             android:layout_gravity="bottom"
+            android:background="@drawable/action_intro"
             android:text="@string/text_start" />
     </LinearLayout>
     
