@@ -5,23 +5,48 @@
     <string name="usuario">Usuario</string>
     <string name="user_invalid">Introduce un usuario válido</string>
  	<string name="how_to_play">Cómo se juega</string>
+ 	<string name="show_results">Ver resultados</string>
     <string name="kitchen">COCINA</string>
     <string name="classroom">AULA</string>
     <string name="enter">Entrar</string>
-    <string name="escape">Rscape</string>
+    <string name="escape">Escape</string>
     <string name="ir">IR</string>
     
     <!-- Buttons -->
     <string name="text_start">Start</string>
+    
+    <!-- Arrays -->
     <string-array name="reference_classroom">
 		<item>switch</item>
 		<item>keyboard</item>
 		<item>plug</item>
 		<item>hand</item>
     </string-array>
-   <string-array name="reference_prueba">
+    <string-array name="reference_kitchen">
+		<item>coke</item>
+		<item>knife</item>
+		<item>microwave</item>
+		<item>door</item>
+    </string-array>
+    
+    <string-array name="reference_prueba">
 		<item>lenovo</item>
 		<item>android</item>
 		<item>jake</item>
+    </string-array>
+
+    <!-- guide -->
+    <string-array name="guide_classroom">
+		<item>Una clase aparentemente normal, con ordenadores, mesas con cajones, sillas
+            pero no lo puedo ver con claridad, la luz esta apagada</item>
+		<item>Necesitamos algo de luz...</item>
+		<item>A ese ordenador le falta algo...</item>
+		<item>hand</item>
+    </string-array>
+    <string-array name="reward_classroom">
+		<item>Bien! ya tenemos luz!</item>
+		<item>Necesitamos algo de luz...</item>
+		<item></item>
+		<item>hand</item>
     </string-array>
 </resources>
