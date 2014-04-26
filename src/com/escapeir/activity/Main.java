@@ -3,7 +3,6 @@ package com.escapeir.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -16,7 +15,10 @@ import com.escapeir.server.Connect;
 import com.example.escapeir.R;
 
 public class Main extends Activity implements OnClickListener {
-	private Button bedroom;
+	
+	private Button howToPlay;
+	private Button ranking;
+	
 	private Button classroom;
 	private Button kitchen;
 
@@ -30,11 +32,16 @@ public class Main extends Activity implements OnClickListener {
 		classroom = (Button) findViewById(R.id.btn_classroom);
 		kitchen = (Button) findViewById(R.id.btn_kitchen);
 		editUser = (EditText) findViewById(R.id.edit_user);
-
+		howToPlay = (Button) findViewById(R.id.btn_how_to_play);
+		ranking = (Button) findViewById(R.id.btn_show_ranking);
+		TextView textUser = (TextView) findViewById(R.id.text_user);
+		
 		classroom.setOnClickListener(this);
 		kitchen.setOnClickListener(this);
+		howToPlay.setOnClickListener(this);
+		ranking.setOnClickListener(this);
 
-		TextView textUser = (TextView) findViewById(R.id.text_user);
+		
 		Connect connect = new Connect();
 	
 		EscapeIRApplication.usersServer.clear();
@@ -62,6 +69,13 @@ public class Main extends Activity implements OnClickListener {
 					EscapeIRApplication.MODE_CLASSROOM);
 			startActivity(cameraIntent);
 			break;
+		case R.id.btn_show_ranking:
+			Connect connect = new Connect();
+			connect.getUser();
+			if (EscapeIRApplication.haveResult) {
+				Intent intent = new Intent(this, Results.class);
+				startActivity(intent);
+			}
 		}
 	}
 
