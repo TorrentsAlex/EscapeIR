@@ -2,15 +2,15 @@ package com.escapeir.util;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.escapeir.application.EscapeIRApplication;
 import com.escapeir.userclass.User;
 import com.example.escapeir.R;
@@ -24,7 +24,6 @@ public class ItemAdapter extends ArrayAdapter<User> {
 		this.context = context;
 		this.listItems = (ArrayList<User>) objects;
 	}
-
 	public View getView(int position, View convertView, ViewGroup parent) {
 		if (convertView == null) {
 			LayoutInflater inflater = (LayoutInflater) context
@@ -36,10 +35,20 @@ public class ItemAdapter extends ArrayAdapter<User> {
 		TextView item_time = (TextView) convertView
 				.findViewById(R.id.text_list_time);
 		
-		Log.i(EscapeIRApplication.TAG,listItems.get(position).getName());
+		// Set the name and time for top 5
 		item_user.setText(listItems.get(position).getName());
 		item_time.setText(""+listItems.get(position).getTime());
 		
+		// set colors for the best results 
+		LinearLayout listLayout = (LinearLayout) convertView.findViewById(R.id.layout_list);
+		if (position == 0){
+			listLayout.setBackgroundResource(R.color.gold);
+		}else if (position == 1) {
+			listLayout.setBackgroundResource(R.color.silver);
+		}else if (position == 2) {
+			listLayout.setBackgroundResource(R.color.bronze);
+		}
+
 		return convertView;
 	}
 
