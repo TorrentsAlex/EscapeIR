@@ -16,23 +16,23 @@
 	        android:layout_margin="15dp"
 	        android:layout_alignParentTop="true"
 	        android:layout_centerInParent="true"/>
-	    
 
 	</RelativeLayout>
     
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:gravity="center"
         android:orientation="vertical" >
 
         <TextView
+            android:id="@+id/txt_your_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textColor="@color/red"
-            android:text="Your time"
-            android:textSize="20sp"
+            android:text="@string/your_time"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
         <TextView
@@ -41,6 +41,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="@color/red"
+            android:textSize="22sp"
             android:text="00:00"
             android:textStyle="bold" />
     </LinearLayout>
@@ -48,40 +49,41 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+		android:gravity="center"
         android:orientation="horizontal" >
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal" >
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginRight="30dp"
+	        android:textStyle="bold"
+	        android:text="@string/usuario" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
-                android:text="usuario" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:text="tiempo" />
-        </LinearLayout>
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	       	android:textStyle="bold"
+	        android:layout_marginLeft="30dp"
+	        android:text="@string/time" />
     </LinearLayout>
-
-    <ListView
+	<ListView
         android:id="@+id/listView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:dividerHeight="2dp" >
     </ListView>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+         >
 
         <Button
+            android:id="@+id/btn_return"
     		android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_alignParentRight="true"
