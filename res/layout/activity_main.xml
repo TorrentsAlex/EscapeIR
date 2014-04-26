@@ -105,13 +105,13 @@
 	        android:layout_alignParentBottom="true">
 	 		
 	 		<Button
-	            android:id="@+id/btn_show_results"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:background="@drawable/action_results"
-	            android:layout_alignParentLeft="true"
-	            android:textColor="@android:color/white"
-	            android:text="@string/show_results"/>
+	 		    android:id="@+id/btn_show_ranking"
+	 		    android:layout_width="wrap_content"
+	 		    android:layout_height="wrap_content"
+	 		    android:layout_alignParentLeft="true"
+	 		    android:background="@drawable/action_results"
+	 		    android:text="@string/ranking"
+	 		    android:textColor="@android:color/white" />
 	        
 	        <Button
 	            android:id="@+id/btn_how_to_play"
@@ -120,7 +120,7 @@
 	            android:background="@drawable/action_results"
 	 			android:layout_alignParentRight="true"
 	            android:textColor="@android:color/white"
-	            android:text="@string/how_to_play" />
+	            android:text="@string/help" />
     </RelativeLayout>
 
    
