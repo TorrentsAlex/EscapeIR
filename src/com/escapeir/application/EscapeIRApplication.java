@@ -13,6 +13,9 @@ public class EscapeIRApplication extends Application {
 	public static final String TAG = "EscapeIR";
 	public static final String escapeToken="dd46676fc6b445ea";
 	
+	public static boolean initialized=false;
+	public static boolean haveResult=false;
+	
 	public static int PLAY_MODE;
 	public static final int MODE_KITCHEN = 1;
 	public static final int MODE_BEDROOM = 2;
