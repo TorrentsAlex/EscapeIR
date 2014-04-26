@@ -43,12 +43,12 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 	private Button btnHelp;
 	private Button btnPhoto;
 	private Button btnIntro;
-	
+
 	private TextView txtGuide;
 	private TextView txtBody;
-	
+
 	private Chronometer chronometer;
-	
+
 	private RelativeLayout layoutHelp;
 	private LinearLayout layoutPhoto;
 	private LinearLayout layoutIntro;
@@ -58,10 +58,10 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 	public void onCreate(Bundle savedInstanceState) {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-		WindowManager.LayoutParams.FLAG_FULLSCREEN);
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		super.onCreate(savedInstanceState);
 	}
-	
+
 	@Override
 	public void onPostCreate() {
 		View mainLayout = (View) getLayoutInflater().inflate(
@@ -72,6 +72,7 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 		setContentView(mainLayout);
 
 		// Initialize the SDK.
+		EscapeIRApplication.initialized = true;
 		CatchoomSDK.init(getApplicationContext(), this);
 
 		cloudRecognition = CatchoomSDK.getCloudRecognition();
@@ -83,6 +84,7 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 
 		catchoomCamera = CatchoomSDK.getCamera();
 		catchoomCamera.setImageHandler(this);
+	
 
 		btnPhoto = (Button) findViewById(R.id.btn_photo);
 		btnIntro = (Button) findViewById(R.id.btn_start);
@@ -92,13 +94,13 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 		chronometer = (Chronometer) findViewById(R.id.chronometer);
 		txtGuide = (TextView) findViewById(R.id.txt_guide);
 		txtBody = (TextView) findViewById(R.id.txt_body);
-		
+
 		btnPhoto.setOnClickListener(this);
 		btnIntro.setOnClickListener(this);
-		
+
 		layoutPhoto.setVisibility(View.INVISIBLE);
 		layoutHelp.setVisibility(View.INVISIBLE);
-		
+
 		txtBody.setText(EscapeIRApplication.GUIDE_ROOM[0]);
 	}
 
@@ -111,8 +113,24 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 	@Override
 	public void requestFailedResponse(int arg0,
 			CatchoomCloudRecognitionError arg1) {
-		Log.i(EscapeIRApplication.TAG, arg1.getErrorMessage());
-
+		Log.i(EscapeIRApplication.TAG, "requestFailed: " + arg1.getErrorMessage());
+		
+		int errorCode = arg1.getErrorCode();
+		
+		String error = "";
+		switch (errorCode) {
+		case CatchoomCloudRecognitionError.ErrorCodes.IMAGE_NO_DETAILS:
+			error = "Porfavor, haz una foto a un objeto con mas detalles";
+			break;
+		case CatchoomCloudRecognitionError.ErrorCodes.CONNECTION_ERROR:
+			error = "Error de conexión";
+			break;
+		default:
+			error = "Error desconocido";
+		break;
+		}
+		Toast.makeText(this, error, Toast.LENGTH_LONG).show();
+		catchoomCamera.restartCameraPreview();
 	}
 
 	@Override
@@ -128,7 +146,7 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 			if (item.getItemName()
 					.equals(EscapeIRApplication.CHOOSEN_ROOM[EscapeIRApplication.COUNT_REFERENCE])) {
 				EscapeIRApplication.COUNT_REFERENCE++;
-				txtGuide.setText(EscapeIRApplication.GUIDE_ROOM[1+EscapeIRApplication.COUNT_REFERENCE]);
+				txtGuide.setText(EscapeIRApplication.GUIDE_ROOM[1 + EscapeIRApplication.COUNT_REFERENCE]);
 				// Item Augmented Reality
 				if (item.isAR()) {
 					CatchoomARItem itemAR = (CatchoomARItem) item;
@@ -137,19 +155,23 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 						catchoomTracking.startTracking();
 					}
 					// Item Image Recognition
-				} else { 
+				} else {
 					Toast.makeText(this, item.getItemName(), Toast.LENGTH_SHORT)
-					.show();
+							.show();
 				}
 				// finish the game, go to results
-				if(EscapeIRApplication.COUNT_REFERENCE == EscapeIRApplication.CHOOSEN_ROOM.length) {
+				if (EscapeIRApplication.COUNT_REFERENCE == EscapeIRApplication.CHOOSEN_ROOM.length) {
 					String time = (String) chronometer.getText();
 
-					Log.i(EscapeIRApplication.TAG, EscapeIRApplication.USER_NAME+ "-"+ time);
+					Log.i(EscapeIRApplication.TAG,
+							EscapeIRApplication.USER_NAME + "-" + time);
 					connect.setUser(EscapeIRApplication.USER_NAME, time);
 					connect.getUser();
-					
+
 					chronometer.stop();
+					
+					EscapeIRApplication.GUIDE_ROOM = null;
+					EscapeIRApplication.CHOOSEN_ROOM = null;
 					
 					Intent intent = new Intent(this, Results.class);
 					intent.putExtra("time", time);
@@ -158,12 +180,14 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 				}
 
 			} else {
-				Toast.makeText(this, "Incorrect", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "Objeto incorrecto aunque mas adelante sera útil...", Toast.LENGTH_LONG).show();
 			}
 		}
 		// Nothing found
-		if(!haveContent) {
-			Toast.makeText(this, "No se ha encontrado nada, por favor sigue la guia", Toast.LENGTH_LONG).show();
+		if (!haveContent) {
+			Toast.makeText(this,
+					"No se ha encontrado nada, por favor sigue la guia",
+					Toast.LENGTH_LONG).show();
 		}
 		catchoomCamera.restartCameraPreview();
 		Log.i(EscapeIRApplication.TAG, "restart Camera");
@@ -193,11 +217,11 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 		case R.id.btn_start:
 			// Start Game
 			txtGuide.setText(EscapeIRApplication.GUIDE_ROOM[1]);
-			
+
 			layoutPhoto.setVisibility(View.VISIBLE);
 			layoutHelp.setVisibility(View.VISIBLE);
 			layoutIntro.setVisibility(View.INVISIBLE);
-			
+
 			chronometer.setBase(SystemClock.elapsedRealtime());
 			chronometer.start();
 			break;
@@ -207,23 +231,31 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 
 	@Override
 	public void onPause() {
-		if(chronometer!=null) {
+		if (chronometer != null) {
 			chronometer.stop();
 		}
-		Log.i("EscapeIR","onPause");
-		
+		Log.i("EscapeIR", "onPause");
+
 		super.onPause();
 	}
 
 	@Override
 	public void onResume() {
-		if(chronometer!=null) {
+		if (chronometer != null) {
 			chronometer.start();
 			chronometer.setVisibility(View.VISIBLE);
 		}
-		Log.i("EscapeIR","onResume");
-		
+		Log.i("EscapeIR", "onResume");
+
 		super.onResume();
 	}
 
+	@Override
+	public void finish() {
+		catchoomTracking.removeAllItems();
+		//if (array != null) {
+		//	array.clear();
+		//}
+		super.finish();
+	}
 }
