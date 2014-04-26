@@ -127,6 +127,7 @@ public class Connect {
 					Log.e(EscapeIRApplication.TAG, "Error converting result "
 							+ e.toString());
 				}
+				EscapeIRApplication.haveResult=true;
 			}
 		};
 		sqlThread.start();
