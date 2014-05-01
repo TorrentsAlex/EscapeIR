@@ -30,11 +30,11 @@ public class Results extends Activity implements OnClickListener {
 		
 		btnReturn.setOnClickListener(this);
 		
-		if (getIntent().getExtras().getString("time").equals(null)) {
+		if (EscapeIRApplication.USER_TIME == null) {
 			txtYourTime.setVisibility(View.GONE);
 			userTime.setVisibility(View.GONE);
 		} else {
-			userTime.setText(getIntent().getExtras().getString("time"));
+			userTime.setText(EscapeIRApplication.USER_TIME);
 		}
 
 		viewList.setAdapter(new ItemAdapter(this, R.layout.result_list,
@@ -43,18 +43,12 @@ public class Results extends Activity implements OnClickListener {
 	}
 
 	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		EscapeIRApplication.usersServer.clear();
-		txtYourTime.setVisibility(View.VISIBLE);
-		userTime.setVisibility(View.VISIBLE);
-		finish();
-	}
-
-	@Override
 	public void onBackPressed() {
 		txtYourTime.setVisibility(View.VISIBLE);
 		userTime.setVisibility(View.VISIBLE);
+		EscapeIRApplication.usersServer.clear();
+		Intent intent = new Intent(this, Main.class);
+		startActivity(intent);
 		finish();
 		
 		super.onBackPressed();
@@ -64,7 +58,7 @@ public class Results extends Activity implements OnClickListener {
 	public void onClick(View arg0) {
 		switch (arg0.getId()) {
 		case R.id.btn_return:
-			finish();
+			onBackPressed();
 			break;
 		}
 
