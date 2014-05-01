@@ -1,6 +1,7 @@
 package com.escapeir.activity;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +25,7 @@ public class Main extends Activity implements OnClickListener {
 
 	private EditText editUser;
 
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -40,12 +42,7 @@ public class Main extends Activity implements OnClickListener {
 		kitchen.setOnClickListener(this);
 		howToPlay.setOnClickListener(this);
 		ranking.setOnClickListener(this);
-
 		
-		Connect connect = new Connect();
-	
-		EscapeIRApplication.usersServer.clear();
-
 		if (null != EscapeIRApplication.USER_NAME)
 			textUser.setText(EscapeIRApplication.USER_NAME);
 	}
@@ -70,12 +67,8 @@ public class Main extends Activity implements OnClickListener {
 			startActivity(cameraIntent);
 			break;
 		case R.id.btn_show_ranking:
-			Connect connect = new Connect();
-			connect.getUser();
-			if (EscapeIRApplication.haveResult) {
-				Intent intent = new Intent(this, Results.class);
-				startActivity(intent);
-			}
+			new Connect(this,Main.this).execute(false);
+
 		}
 	}
 
