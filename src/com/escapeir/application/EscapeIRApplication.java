@@ -38,6 +38,7 @@ public class EscapeIRApplication extends Application {
 	public static SharedPreferences preferencesUser=null;
 
 	public static String USER_NAME=null;
+	public static String USER_TIME=null;
 	
 	public static ArrayList<User> usersServer = new ArrayList();
 	
