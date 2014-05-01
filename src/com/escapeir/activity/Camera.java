@@ -2,6 +2,7 @@ package com.escapeir.activity;
 
 import java.util.ArrayList;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -52,7 +53,8 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 	private RelativeLayout layoutHelp;
 	private LinearLayout layoutPhoto;
 	private LinearLayout layoutIntro;
-	private Connect connect = new Connect();
+	private Connect connect;
+	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -102,6 +104,7 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 		layoutHelp.setVisibility(View.INVISIBLE);
 
 		txtBody.setText(EscapeIRApplication.GUIDE_ROOM[0]);
+		
 	}
 
 	@Override
@@ -161,22 +164,18 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 				}
 				// finish the game, go to results
 				if (EscapeIRApplication.COUNT_REFERENCE == EscapeIRApplication.CHOOSEN_ROOM.length) {
-					String time = (String) chronometer.getText();
-
-					Log.i(EscapeIRApplication.TAG,
-							EscapeIRApplication.USER_NAME + "-" + time);
-					connect.setUser(EscapeIRApplication.USER_NAME, time);
-					connect.getUser();
-
+					EscapeIRApplication.USER_TIME = (String) chronometer.getText();
 					chronometer.stop();
+					Log.i(EscapeIRApplication.TAG,
+							EscapeIRApplication.USER_NAME + "-" + EscapeIRApplication.USER_TIME);
+
+					new Connect(this, Camera.this).execute(true);
+					new Connect(this, Camera.this).execute(false);
 					
 					EscapeIRApplication.GUIDE_ROOM = null;
 					EscapeIRApplication.CHOOSEN_ROOM = null;
 					
-					Intent intent = new Intent(this, Results.class);
-					intent.putExtra("time", time);
-					startActivity(intent);
-					finish();
+					//finish();
 				}
 
 			} else {
