@@ -55,15 +55,11 @@ public class Main extends Activity implements OnClickListener {
 		case R.id.btn_kitchen:
 			Logic.chargeArray(EscapeIRApplication.MODE_KITCHEN, this);
 
-			cameraIntent.putExtra("escapeMode",
-					EscapeIRApplication.MODE_KITCHEN);
 			startActivity(cameraIntent);
 			break;
 		case R.id.btn_classroom:
 			Logic.chargeArray(EscapeIRApplication.MODE_CLASSROOM, this);
 
-			cameraIntent.putExtra("escapeMode",
-					EscapeIRApplication.MODE_CLASSROOM);
 			startActivity(cameraIntent);
 			break;
 		case R.id.btn_show_ranking:
