@@ -9,7 +9,7 @@
     <string name="ir">IR</string>
     <string name="your_time">Tu tiempo</string>
     <string name="time">Tiempo</string>
-    
+    <string name="button_pause">Pausa</string>
     <!-- Buttons -->
     <string name="text_start">Start</string>
     <string name="kitchen">COCINA</string>
