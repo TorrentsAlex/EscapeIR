@@ -21,9 +21,10 @@ public class EscapeIRApplication extends Application {
 	public static final int MODE_BEDROOM = 2;
 	public static final int MODE_CLASSROOM = 3;
 	
-	public static int COUNT_REFERENCE=0;
 	public static String[] CHOOSEN_ROOM;
 	public static String[] GUIDE_ROOM;
+	public static String[] REWARD_ROOM;
+	public static String INTRO_ROOM;
 	
 	public static String preferencesEscape="EscapeIRPreferences";
 	
