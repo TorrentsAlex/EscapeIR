@@ -41,21 +41,20 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 	private CatchoomTracking catchoomTracking;
 	private CatchoomCamera catchoomCamera;
 
-	private Button btnHelp;
 	private Button btnPhoto;
 	private Button btnIntro;
 
 	private TextView txtGuide;
 	private TextView txtBody;
+	private TextView txtTitle;
 
 	private Chronometer chronometer;
 
 	private RelativeLayout layoutHelp;
 	private LinearLayout layoutPhoto;
 	private LinearLayout layoutIntro;
-	private Connect connect;
-	
 
+	private int COUNT_REFERENCE=0;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -87,7 +86,6 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 		catchoomCamera = CatchoomSDK.getCamera();
 		catchoomCamera.setImageHandler(this);
 	
-
 		btnPhoto = (Button) findViewById(R.id.btn_photo);
 		btnIntro = (Button) findViewById(R.id.btn_start);
 		layoutPhoto = (LinearLayout) findViewById(R.id.layout_btn_photo);
@@ -96,14 +94,16 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 		chronometer = (Chronometer) findViewById(R.id.chronometer);
 		txtGuide = (TextView) findViewById(R.id.txt_guide);
 		txtBody = (TextView) findViewById(R.id.txt_body);
+		txtTitle = (TextView) findViewById(R.id.text_title);
 
 		btnPhoto.setOnClickListener(this);
 		btnIntro.setOnClickListener(this);
-
+		
 		layoutPhoto.setVisibility(View.INVISIBLE);
 		layoutHelp.setVisibility(View.INVISIBLE);
 
-		txtBody.setText(EscapeIRApplication.GUIDE_ROOM[0]);
+		txtTitle.setText(R.string.intro_classroom);
+		txtBody.setText(EscapeIRApplication.INTRO_ROOM);
 		
 	}
 
@@ -140,16 +140,18 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 	public void searchCompleted(ArrayList<CatchoomCloudRecognitionItem> results) {
 		Log.i(EscapeIRApplication.TAG, "searchCompleted");
 		boolean haveContent = false;
+		catchoomCamera.restartCameraPreview();
+		Log.i(EscapeIRApplication.TAG, "restart Camera");
 
 		// Look for trackable results
 		for (CatchoomCloudRecognitionItem item : results) {
 			haveContent = true;
 			Log.i(EscapeIRApplication.TAG, item.getItemName());
+			Log.i(EscapeIRApplication.TAG, "item a scanear: "+EscapeIRApplication.CHOOSEN_ROOM[COUNT_REFERENCE]);
+			Log.i(EscapeIRApplication.TAG, "CountReference: "+ COUNT_REFERENCE+ "|| length: "+EscapeIRApplication.CHOOSEN_ROOM.length);
+			if (item.getItemName().toLowerCase()
+					.equals(EscapeIRApplication.CHOOSEN_ROOM[COUNT_REFERENCE])) {
 
-			if (item.getItemName()
-					.equals(EscapeIRApplication.CHOOSEN_ROOM[EscapeIRApplication.COUNT_REFERENCE])) {
-				EscapeIRApplication.COUNT_REFERENCE++;
-				txtGuide.setText(EscapeIRApplication.GUIDE_ROOM[1 + EscapeIRApplication.COUNT_REFERENCE]);
 				// Item Augmented Reality
 				if (item.isAR()) {
 					CatchoomARItem itemAR = (CatchoomARItem) item;
@@ -159,11 +161,11 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 					}
 					// Item Image Recognition
 				} else {
-					Toast.makeText(this, item.getItemName(), Toast.LENGTH_SHORT)
+					Toast.makeText(this, EscapeIRApplication.REWARD_ROOM[COUNT_REFERENCE], Toast.LENGTH_SHORT)
 							.show();
 				}
 				// finish the game, go to results
-				if (EscapeIRApplication.COUNT_REFERENCE == EscapeIRApplication.CHOOSEN_ROOM.length) {
+				if (COUNT_REFERENCE == EscapeIRApplication.CHOOSEN_ROOM.length-1) {
 					EscapeIRApplication.USER_TIME = (String) chronometer.getText();
 					chronometer.stop();
 					Log.i(EscapeIRApplication.TAG,
@@ -176,6 +178,10 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 					EscapeIRApplication.CHOOSEN_ROOM = null;
 					
 					//finish();
+				} else {
+					COUNT_REFERENCE++;
+
+					txtGuide.setText(EscapeIRApplication.GUIDE_ROOM[COUNT_REFERENCE]);
 				}
 
 			} else {
@@ -188,9 +194,6 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 					"No se ha encontrado nada, por favor sigue la guia",
 					Toast.LENGTH_LONG).show();
 		}
-		catchoomCamera.restartCameraPreview();
-		Log.i(EscapeIRApplication.TAG, "restart Camera");
-
 	}
 
 	@Override
@@ -215,7 +218,7 @@ public class Camera extends CatchoomActivity implements OnClickListener,
 			break;
 		case R.id.btn_start:
 			// Start Game
-			txtGuide.setText(EscapeIRApplication.GUIDE_ROOM[1]);
+			txtGuide.setText(EscapeIRApplication.GUIDE_ROOM[0]);
 
 			layoutPhoto.setVisibility(View.VISIBLE);
 			layoutHelp.setVisibility(View.VISIBLE);
