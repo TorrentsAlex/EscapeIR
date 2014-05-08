@@ -107,7 +107,8 @@ public class Connect extends AsyncTask<Boolean, String, Boolean> {
 					"Error converting result " + e.toString());
 		}
 		// parse json data
-		if (params[0]) {
+		if (setOrGet) {
+			// return if is set user
 			return true;
 		} else {
 			try {
