@@ -16,6 +16,7 @@ import com.example.escapeir.R;
 public class Results extends Activity implements OnClickListener {
 	private TextView userTime;
 	private TextView txtYourTime;
+	
 	private Button btnReturn;
 
 	@Override
@@ -47,6 +48,7 @@ public class Results extends Activity implements OnClickListener {
 		txtYourTime.setVisibility(View.VISIBLE);
 		userTime.setVisibility(View.VISIBLE);
 		EscapeIRApplication.usersServer.clear();
+		EscapeIRApplication.USER_TIME = null;
 		Intent intent = new Intent(this, Main.class);
 		startActivity(intent);
 		finish();
@@ -61,7 +63,5 @@ public class Results extends Activity implements OnClickListener {
 			onBackPressed();
 			break;
 		}
-
 	}
-
 }
