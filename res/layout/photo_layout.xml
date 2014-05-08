@@ -70,7 +70,6 @@
             android:layout_marginTop="8dp"
             android:gravity="center"
             android:layout_gravity="top"
-            android:text="te estas introduciendo en..."
             android:textStyle="bold" />
 
         <TextView
@@ -88,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="@drawable/action_intro"
-            android:text="@string/text_start" />
+            android:text="@string/empezar" />
     </LinearLayout>
     
     <LinearLayout 
