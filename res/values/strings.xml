@@ -46,21 +46,21 @@
 
     <!-- guide -->
     <string name="intro_classroom">Me he vuelto a quedar dormido!?</string>
-    <string name="intro_body_classroom">Pero esta vez es diferente, esta vez me han dejado solo!! no hay nadie y esta todo apagado, 
-ademas han puesto una contraseña a la puerta? cuando han hecho este cambio? habra que buscar la contraseña pero asi no se ve nada...
-		</string>
+    <string name="intro_body_classroom">Pero esta vez me han dejado solo!! Han puesto una contraseña a la puerta? Cuando han hecho este cambio? Habrá que buscar la contraseña pero está demasiado oscuro
+	</string>
+		
     <string-array name="guide_classroom">
-		<item>no veo nada, necesito luz</item>
-		<item>podria estar cerca del ordenador</item>
-		<item>conectarlo a la corriente y listo</item>
-		<item>este cuadro tiene algo raro...</item>
-		<item>y donde lo pongo?</item>
+		<item>No veo nada, donde estará el interruptor</item>
+		<item>Puede que lo hayan guardado en algún armario</item>
+		<item>Conectarlo a la corriente y listo</item>
+		<item>Parece que hay algo en el cuadro</item>
+		<item>Y donde lo escribo?</item>
     </string-array>
     <string-array name="reward_classroom">
-		<item>el ordenador del profe! pero le falta algo...</item>
-		<item>ya tengo el cargador! falta enchufarlo</item>
-		<item>me pide contraseña? esto es nuevo</item>
-		<item>perfecto! solo lo falta introducirlo</item>
-		<item>La puerta se ha abierto! la próxima vez no me dormiré...</item>
+		<item>El ordenador del profe! Pero le falta algo...</item>
+		<item>Ya tengo el cargador! Falta enchufarlo</item>
+		<item>Me pide contraseña? Esto es nuevo</item>
+		<item>Perfecto! solo lo falta introducirlo</item>
+		<item>La puerta se ha abierto! La próxima vez no me dormiré...</item>
     </string-array>
 </resources>
