@@ -41,7 +41,7 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.escapeir.userclass.User;
+import com.escapeir.classes.User;
 import com.example.escapeir.R;
 
 public class ItemAdapter extends ArrayAdapter<User> {

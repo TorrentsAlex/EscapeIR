@@ -28,7 +28,7 @@
 /**
 *	author: Alex Torrents Sanchez
 */
-package com.escapeir.userclass;
+package com.escapeir.classes;
 
 public class User {
 	private String name;

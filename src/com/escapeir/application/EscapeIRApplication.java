@@ -36,7 +36,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.escapeir.userclass.User;
+import com.escapeir.classes.User;
 
 public class EscapeIRApplication extends Application {
 	

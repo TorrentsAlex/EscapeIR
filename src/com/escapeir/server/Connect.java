@@ -56,7 +56,7 @@ import android.util.Log;
 
 import com.escapeir.activity.Results;
 import com.escapeir.application.EscapeIRApplication;
-import com.escapeir.userclass.User;
+import com.escapeir.classes.User;
 
 public class Connect extends AsyncTask<Boolean, String, Boolean> {
 	private ProgressDialog dialog;
