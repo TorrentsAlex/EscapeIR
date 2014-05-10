@@ -45,9 +45,9 @@ public class HowToPlay extends Activity {
 	}
 
 	@Override
-	protected void onDestroy() {
+	public void onBackPressed() {
 		finish();
-		super.onDestroy();
+		super.onBackPressed();
 	}
 
 }

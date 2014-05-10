@@ -58,7 +58,6 @@ public class Main extends Activity implements OnClickListener {
 
 	private EditText editUser;
 
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -105,6 +104,10 @@ public class Main extends Activity implements OnClickListener {
 				return;
 			}
 			new Connect(this,Main.this).execute(false);
+			break;
+		case R.id.btn_how_to_play:
+			Intent helpIntent = new Intent(this, HowToPlay.class);
+			startActivity(helpIntent);
 		}
 	}
 	/**

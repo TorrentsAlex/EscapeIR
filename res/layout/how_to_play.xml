@@ -6,15 +6,43 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="15dp"
         android:orientation="vertical" >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
-            <ImageView />
-            <TextView />
+            <ImageView 
+                android:layout_width="150dp"
+            	android:layout_height="300dp"
+            	android:background="@drawable/help_menu"
+            	android:src="@drawable/help_menu"/>
+
+           	<TextView
+           	    android:layout_width="wrap_content"
+           	    android:layout_height="wrap_content"
+				android:layout_marginTop="45dp"
+           	    android:text="Para empezar deberemos seleccionar una de las habitaciones" />
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+           	<TextView
+           	    android:layout_width="0dp"
+           	    android:layout_height="wrap_content"
+           	    android:layout_weight="1"
+           	    android:layout_marginTop="45dp"
+           	    android:text="Cuando estemos dentro de la habitación deberemos hacer fotografías a los objetos siguiendo la guia de apoyo" />
+        
+            <ImageView 
+                android:layout_width="150dp"
+            	android:layout_height="300dp"
+            	android:src="@drawable/help_photo"/>
+
+        </LinearLayout>
+                
     </LinearLayout>
 
 </ScrollView>
