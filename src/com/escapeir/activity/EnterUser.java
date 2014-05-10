@@ -32,6 +32,7 @@ package com.escapeir.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.IntentSender.SendIntentException;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -44,11 +45,27 @@ import com.escapeir.application.EscapeIRApplication;
 import com.escapeir.util.Preferences;
 import com.example.escapeir.R;
 
-public class EnterUser extends Activity implements OnClickListener {
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
+import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.plus.Plus;
+
+public class EnterUser extends Activity implements OnClickListener,  ConnectionCallbacks, OnConnectionFailedListener {
 	
 	private EditText editUser;
 	private Button buttonUser;
 	private TextView textInvalidUser;
+
+	private GoogleApiClient mGoogleApiClient;
+	 /* A flag indicating that a PendingIntent is in progress and prevents
+	   * us from starting further intents.
+	   */
+	private boolean mIntentInProgress;
+
+	/* Request code used to invoke sign in user interactions. */
+	private static final int RC_SIGN_IN = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -66,11 +83,20 @@ public class EnterUser extends Activity implements OnClickListener {
 		buttonUser = (Button) findViewById(R.id.btn_name);
 		buttonUser.setOnClickListener(this);
 		
+		mGoogleApiClient = new GoogleApiClient.Builder(this)
+        .addConnectionCallbacks( this)
+        .addOnConnectionFailedListener(this)
+        .addApi(Plus.API, null)
+        .addScope(Plus.SCOPE_PLUS_LOGIN)
+        .build();
+
+		
 	}
 
 	@Override
 	public void onClick(View v) {
-		if(v.getId() == R.id.btn_name) {
+		switch(v.getId()) {
+		case R.id.btn_name: 
 			String user = editUser.getText().toString(); 
 			
 			if (!user.isEmpty()) {
@@ -91,7 +117,39 @@ public class EnterUser extends Activity implements OnClickListener {
 			} else {
 				textInvalidUser.setVisibility(View.VISIBLE);
 			}
+			break;
+		case R.id.sign_in_button: break;
 		}
+	}
+
+	protected void onStart() {
+		super.onStart();
+		mGoogleApiClient.connect();
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+
+		if (mGoogleApiClient.isConnected()) {
+			mGoogleApiClient.disconnect();
+		}
+	}
+
+	@Override
+	public void onConnectionFailed(ConnectionResult result) {
+	}
+
+	@Override
+	public void onConnected(Bundle connectionHint) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onConnectionSuspended(int cause) {
+		mGoogleApiClient.connect();
+
 	}
 
 }
